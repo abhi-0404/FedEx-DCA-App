@@ -17,9 +17,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useUser } from '@/hooks/use-user';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { useRouter } from 'next/navigation';
 
 export function UserNav() {
   const { user, logout } = useUser();
+  const router = useRouter();
   
   if (!user) {
     return null;
@@ -48,7 +50,7 @@ export function UserNav() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem onSelect={() => { /* Placeholder for profile */ }}>
+          <DropdownMenuItem onSelect={() => router.push('/profile')}>
             Profile
           </DropdownMenuItem>
           <DropdownMenuItem onSelect={() => { /* Placeholder for settings */ }}>
