@@ -82,7 +82,7 @@ export default function UsersPage() {
                 </TableCell>
               </TableRow>
             )})}
-          </TableBody>
+          </TableBody> 
         </Table>
       </div>
     </>
