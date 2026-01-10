@@ -68,7 +68,7 @@ export default function DcasPage() {
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <Link href={`/dcas/${dca.id}`} passHref>
+                    <Link href={`/dcas/${dca.id}`} passHref legacyBehavior>
                       <Button variant="outline" size="sm" asChild>
                         <a>View Details</a>
                       </Button>
