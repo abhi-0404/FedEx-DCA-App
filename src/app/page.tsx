@@ -1,8 +1,11 @@
 'use client';
 
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import { useRouter } from 'next/navigation';
 import { BrainCircuit } from 'lucide-react';
-
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -11,56 +14,127 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useUser } from '@/hooks/use-user';
-import type { UserRole } from '@/lib/types';
 import { USERS } from '@/lib/data';
+
+const loginFormSchema = z.object({
+  email: z.string().email({ message: 'Please enter a valid email.' }),
+  password: z.string().min(1, { message: 'Password is required.' }),
+});
 
 export default function Home() {
   const { login } = useUser();
   const router = useRouter();
+  const [activeTab, setActiveTab] = useState('signin');
 
-  const handleLogin = (role: UserRole) => {
-    const user = USERS.find((u) => u.role === role);
+  const form = useForm<z.infer<typeof loginFormSchema>>({
+    resolver: zodResolver(loginFormSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const handleLogin = (values: z.infer<typeof loginFormSchema>) => {
+    // This is a simplified login. In a real app, you'd validate against a backend.
+    const user = USERS.find((u) => u.email.toLowerCase() === values.email.toLowerCase());
+
     if (user) {
       login(user);
       router.push('/dashboard');
+    } else {
+      form.setError('email', {
+        type: 'manual',
+        message: 'No user found with this email.',
+      });
     }
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-background p-4">
-      <div className="flex flex-col items-center justify-center space-y-4">
-        <div className="flex items-center gap-2 text-primary">
-          <BrainCircuit className="h-10 w-10" />
-          <h1 className="text-4xl font-bold tracking-tighter">DebtFlow AI</h1>
-        </div>
-        <p className="text-muted-foreground">
-          Intelligent Debt Collection Management
-        </p>
-
-        <Card className="w-full max-w-sm">
-          <CardHeader>
-            <CardTitle>Select a Role</CardTitle>
-            <CardDescription>
-              Choose a user role to explore the dashboard.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="grid gap-2">
-            <Button onClick={() => handleLogin('FedEx Admin')}>
-              FedEx Admin
-            </Button>
-            <Button onClick={() => handleLogin('FedEx Employee')} variant="secondary">
-              FedEx Employee
-            </Button>
-            <Button onClick={() => handleLogin('Agency Admin')} variant="secondary">
-              Agency Admin
-            </Button>
-            <Button onClick={() => handleLogin('Agency Employee')} variant="secondary">
-              Agency Employee
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
+    <main className="flex min-h-screen flex-col items-center justify-center bg-primary/90 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl font-bold text-red-500">
+            FedEx DCA
+          </CardTitle>
+          <CardDescription>Debt Collection Management System</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="signin">Sign In</TabsTrigger>
+              <TabsTrigger value="signup">Sign Up</TabsTrigger>
+            </TabsList>
+            <TabsContent value="signin">
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(handleLogin)}
+                  className="space-y-6 pt-4"
+                >
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-red-500">Email Address</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="email"
+                            placeholder=""
+                            {...field}
+                            className="border-red-500"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-red-500">Password</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="password"
+                            placeholder=""
+                            {...field}
+                             className="border-red-500"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button type="submit" className="w-full bg-primary" size="lg">
+                    Sign In
+                  </Button>
+                </form>
+              </Form>
+            </TabsContent>
+            <TabsContent value="signup">
+              <div className="py-12 text-center text-muted-foreground">
+                <p>Sign up is not yet available.</p>
+              </div>
+            </TabsContent>
+          </Tabs>
+          <div className="mt-4 text-center text-sm text-muted-foreground">
+            <p>Demo Credentials:</p>
+            <p>Admin: aditi.sharma@fedex.com / admin123</p>
+          </div>
+        </CardContent>
+      </Card>
     </main>
   );
 }
