@@ -60,7 +60,7 @@ export default function DcasPage() {
                 <TableRow key={dca.id}>
                   <TableCell className="font-medium">{dca.name}</TableCell>
                   <TableCell>24</TableCell>
-                  <TableCell>$128,432</TableCell>
+                  <TableCell>₹10,710,430</TableCell>
                   <TableCell>
                     <Badge variant={dca.performanceScore && dca.performanceScore > 80 ? 'default' : 'secondary'}>
                         {dca.performanceScore || 'N/A'}

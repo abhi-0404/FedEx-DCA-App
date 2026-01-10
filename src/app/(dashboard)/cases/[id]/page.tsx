@@ -71,7 +71,7 @@ export default function CaseDetailPage({ params }: { params: { id: string } }) {
                 </CardHeader>
                 <CardContent className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <DetailItem icon={DollarSign} label="Outstanding Amount">
-                        {caseData.outstandingAmount.toLocaleString('en-US', { style: 'currency', currency: caseData.currency })}
+                        {caseData.outstandingAmount.toLocaleString('en-IN', { style: 'currency', currency: caseData.currency })}
                     </DetailItem>
                     <DetailItem icon={Calendar} label="Days Overdue">{caseData.daysOverdue}</DetailItem>
                     <DetailItem icon={BarChart} label="Status">

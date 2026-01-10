@@ -138,7 +138,7 @@ export function CaseDataTable({ data }: CaseDataTableProps) {
                   <TableCell className="font-medium">{row.id}</TableCell>
                   <TableCell>{row.customerName}</TableCell>
                   <TableCell>
-                    {new Intl.NumberFormat('en-US', {
+                    {new Intl.NumberFormat('en-IN', {
                       style: 'currency',
                       currency: row.currency,
                     }).format(row.outstandingAmount)}

@@ -77,7 +77,7 @@ export function PredictRecovery({ defaultValues }: PredictRecoveryProps) {
             <h4 className="font-semibold text-lg mb-2">AI Recovery Prediction</h4>
             <div className="space-y-2">
               <p><strong>Recovery Probability:</strong> {result.recoveryProbability.toFixed(2)}%</p>
-              <p><strong>Expected Recovery Amount:</strong> {result.expectedRecoveryAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+              <p><strong>Expected Recovery Amount:</strong> {result.expectedRecoveryAmount.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}</p>
             </div>
           </div>
         )}

@@ -32,7 +32,7 @@ export default function DashboardPage() {
     }
   });
 
-  const totalOutstanding = userCases.reduce((acc, c) => acc + c.outstandingAmount, 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  const totalOutstanding = userCases.reduce((acc, c) => acc + c.outstandingAmount, 0).toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
   
   return (
     <>
@@ -54,7 +54,7 @@ export default function DashboardPage() {
         />
         <StatCard
           title="Recovered This Month"
-          value="$12,234"
+          value="₹1,020,340"
           icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
           description="+15% from last month"
         />
