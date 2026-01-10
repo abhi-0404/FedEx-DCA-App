@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Building, User, DollarSign, Calendar, BarChart, ShieldAlert } from 'lucide-radix';
+import { ArrowLeft, Building, User, DollarSign, Calendar, BarChart, ShieldAlert } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PageHeader } from '@/components/ui/page-header';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -22,11 +22,12 @@ const priorityVariant: { [key in CasePriority]: "destructive" | "default" | "sec
 };
 
 function DetailItem({ icon, label, children }: { icon: React.ElementType, label: string, children: React.ReactNode }) {
+    const Icon = icon;
     return (
         <div className="flex items-start gap-3">
             <div className="flex-shrink-0">
                 <div className="h-8 w-8 rounded-full bg-secondary flex items-center justify-center">
-                    <div className="h-5 w-5 text-muted-foreground">{icon({})}</div>
+                    <Icon className="h-5 w-5 text-muted-foreground" />
                 </div>
             </div>
             <div>
