@@ -10,18 +10,18 @@ import {
 } from '@/components/ui/card';
 
 const data = [
-  { name: 'Jan', total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: 'Feb', total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: 'Mar', total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: 'Apr', total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: 'May', total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: 'Jun', total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: 'Jul', total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: 'Aug', total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: 'Sep', total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: 'Oct', total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: 'Nov', total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: 'Dec', total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: 'Jan', total: Math.floor(Math.random() * 500000) + 100000 },
+  { name: 'Feb', total: Math.floor(Math.random() * 500000) + 100000 },
+  { name: 'Mar', total: Math.floor(Math.random() * 500000) + 100000 },
+  { name: 'Apr', total: Math.floor(Math.random() * 500000) + 100000 },
+  { name: 'May', total: Math.floor(Math.random() * 500000) + 100000 },
+  { name: 'Jun', total: Math.floor(Math.random() * 500000) + 100000 },
+  { name: 'Jul', total: Math.floor(Math.random() * 500000) + 100000 },
+  { name: 'Aug', total: Math.floor(Math.random() * 500000) + 100000 },
+  { name: 'Sep', total: Math.floor(Math.random() * 500000) + 100000 },
+  { name: 'Oct', total: Math.floor(Math.random() * 500000) + 100000 },
+  { name: 'Nov', total: Math.floor(Math.random() * 500000) + 100000 },
+  { name: 'Dec', total: Math.floor(Math.random() * 500000) + 100000 },
 ];
 
 export function OverviewChart() {
@@ -46,7 +46,7 @@ export function OverviewChart() {
               fontSize={12}
               tickLine={false}
               axisLine={false}
-              tickFormatter={(value) => `$${value / 1000}k`}
+              tickFormatter={(value) => `₹${Number(value) / 1000}k`}
             />
             <Tooltip
               cursor={{ fill: 'hsl(var(--muted))' }}
@@ -55,6 +55,7 @@ export function OverviewChart() {
                 borderColor: 'hsl(var(--border))',
                 borderRadius: 'var(--radius)',
               }}
+               formatter={(value) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(Number(value))}
             />
             <Bar dataKey="total" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
           </BarChart>
