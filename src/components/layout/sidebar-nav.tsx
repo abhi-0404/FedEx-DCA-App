@@ -52,7 +52,7 @@ export function SidebarNav() {
     <Sidebar>
       <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex items-center gap-2 p-2">
-          <h2 className="text-xl font-bold tracking-tighter text-sidebar-foreground">
+          <h2 className="text-xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
             FedEx DCA
           </h2>
         </div>
