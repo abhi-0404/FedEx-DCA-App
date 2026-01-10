@@ -1,9 +1,9 @@
 import type { User, DCA, Case } from './types';
 
 export const DCAS: DCA[] = [
-  { id: 'dca-1', name: 'Global Recovery Inc.' },
-  { id: 'dca-2', name: 'Apex Financials' },
-  { id: 'dca-3', name: 'Summit Collections' },
+  { id: 'dca-1', name: 'Global Recovery Inc.', performanceScore: 85 },
+  { id: 'dca-2', name: 'Apex Financials', performanceScore: 72 },
+  { id: 'dca-3', name: 'Summit Collections', performanceScore: 91 },
 ];
 
 export const USERS: User[] = [
