@@ -60,10 +60,10 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-primary/90 p-4">
+    <main className="flex min-h-screen flex-col items-center justify-center bg-secondary p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold text-primary">
+          <CardTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
             FedEx DCA
           </CardTitle>
           <CardDescription>Debt Collection Management System</CardDescription>
@@ -114,7 +114,7 @@ export default function Home() {
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="w-full bg-primary" size="lg">
+                  <Button type="submit" className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground" size="lg">
                     Sign In
                   </Button>
                 </form>
