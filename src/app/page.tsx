@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
-import { BrainCircuit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -64,7 +63,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-center bg-primary/90 p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold text-red-500">
+          <CardTitle className="text-2xl font-bold text-primary">
             FedEx DCA
           </CardTitle>
           <CardDescription>Debt Collection Management System</CardDescription>
@@ -86,13 +85,12 @@ export default function Home() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-red-500">Email Address</FormLabel>
+                        <FormLabel>Email Address</FormLabel>
                         <FormControl>
                           <Input
                             type="email"
-                            placeholder=""
+                            placeholder="your.email@fedex.com"
                             {...field}
-                            className="border-red-500"
                           />
                         </FormControl>
                         <FormMessage />
@@ -104,13 +102,12 @@ export default function Home() {
                     name="password"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-red-500">Password</FormLabel>
+                        <FormLabel>Password</FormLabel>
                         <FormControl>
                           <Input
                             type="password"
-                            placeholder=""
+                            placeholder="********"
                             {...field}
-                             className="border-red-500"
                           />
                         </FormControl>
                         <FormMessage />
@@ -131,7 +128,7 @@ export default function Home() {
           </Tabs>
           <div className="mt-4 text-center text-sm text-muted-foreground">
             <p>Demo Credentials:</p>
-            <p>Admin: aditi.sharma@fedex.com / admin123</p>
+            <p>aditi.sharma@fedex.com / admin123</p>
           </div>
         </CardContent>
       </Card>

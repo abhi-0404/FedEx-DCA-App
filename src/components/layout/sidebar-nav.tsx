@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  BrainCircuit,
   Briefcase,
   Building,
   Home,
@@ -53,9 +52,8 @@ export function SidebarNav() {
     <Sidebar>
       <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex items-center gap-2 p-2">
-          <BrainCircuit className="size-8 text-primary" />
           <h2 className="text-xl font-bold tracking-tighter text-sidebar-foreground">
-            DebtFlow AI
+            FedEx DCA
           </h2>
         </div>
       </SidebarHeader>
