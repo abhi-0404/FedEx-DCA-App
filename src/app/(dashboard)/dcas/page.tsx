@@ -20,6 +20,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import Link from 'next/link';
 
 export default function DcasPage() {
   const { user } = useUser();
@@ -67,9 +68,11 @@ export default function DcasPage() {
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <Button variant="outline" size="sm">
-                      View Details
-                    </Button>
+                    <Link href={`/dcas/${dca.id}`} passHref>
+                      <Button variant="outline" size="sm" asChild>
+                        <a>View Details</a>
+                      </Button>
+                    </Link>
                   </TableCell>
                 </TableRow>
               ))}
